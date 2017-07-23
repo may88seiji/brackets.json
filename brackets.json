@@ -442,6 +442,48 @@
             "mTime": 1500779120287
         },
         {
+            "text": "$('.youtube').each(function() {\n  var movie = $(this).children('iframe'),\n      url = movie.attr('src'),\n      id = url.match(/[\\/?=]([a-zA-Z0-9]{11})[&\\?]?/)[1];\n  movie.before('<img src=\"http://img.youtube.com/vi/'+id+'/sddefault.jpg\" />').remove();\n\n  $(this).on('click', function() {\n    $(this).after('<iframe width=\"640\" height=\"480\" src=\"https://www.youtube.com/embed/'+id+'?rel=0&amp;autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>').remove();\n  });\n});\n/*<div class=\"youtube\">\n  <iframe width=\"640\" height=\"480\" src=\"https://www.youtube.com/embed/${1}?rel=0&amp;autoplay=1\" frameborder=\"0\" allowfullscreen></iframe>\n</div>*/",
+            "trigger": "$youtube",
+            "scope": "javascript",
+            "mTime": 1500812398515
+        },
+        {
+            "trigger": "$filter",
+            "scope": "javascript",
+            "text": "var $item = $('.filter-item').children('div').addClass('all');\n$('.filter-nav a').on('click', function() {\n  var type = $(this).attr('class');\n  $('.filter-item').children('div').hide().filter('.' + type).show();\n  return false;\n});",
+            "mTime": 1500812584831
+        },
+        {
+            "trigger": "$animationend",
+            "text": "$('{1}').on('animationend', function() {\n\n});",
+            "scope": "javascript",
+            "mTime": 1500812669527
+        },
+        {
+            "text": "$('{1}').on('transitionend', function() {\n\n});",
+            "trigger": "$transitionend",
+            "scope": "javascript",
+            "mTime": 1500812727682
+        },
+        {
+            "text": "$('${1}').attr('style', '');",
+            "trigger": "$resetStyle",
+            "scope": "javascript",
+            "mTime": 1500812847308
+        },
+        {
+            "text": "$('${1}:empty').remove();",
+            "trigger": "$removeEmpty",
+            "scope": "javascript",
+            "mTime": 1500812990494
+        },
+        {
+            "trigger": "$contextmenu",
+            "scope": "javascript",
+            "text": "$(document).on('contextmenu', function(e) {\n  return false;\n});",
+            "mTime": 1500813084842
+        },
+        {
             "scope": "html",
             "text": "/* ----------------------------\n* \n* -------------------------- */",
             "trigger": "title",
