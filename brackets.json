@@ -514,17 +514,10 @@
             "mTime": 1495765588140
         },
         {
-            "trigger": "@in",
-            "text": "@include ${1}{\n     \n}",
+            "trigger": "@calc-vw",
+            "text": "calc-vw(${1},)",
             "scope": "scss",
-            "mTime": 1500352986522
-        },
-        {
-            "scope": "scss",
-            "description": "&:active",
-            "trigger": "&active",
-            "mTime": 1453233268797,
-            "text": "&:active {\n   ${1} \n}"
+            "mTime": 1501139103036
         },
         {
             "scope": "scss",
@@ -632,6 +625,12 @@
             "text": "&:hover {\n   ${1} \n}"
         },
         {
+            "trigger": "@in",
+            "text": "@include mq${1}{\n  \n}",
+            "scope": "scss",
+            "mTime": 1501127567288
+        },
+        {
             "trigger": "if",
             "scope": "php",
             "text": "            <?php if() { ?>\n            <?php } else { ?>\n            <?php } ?>",
@@ -652,10 +651,7 @@
         ".git(?!ignore)",
         "dist",
         "bower_components",
-        "node_modules",
-        ".git",
-        "sql",
-        "wiki"
+        "node_modules"
     ],
     "sacah.keyremapper.loadremapperdialog.keymap": {
         "navigate.toggleQuickEdit": {
