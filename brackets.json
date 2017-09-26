@@ -3,7 +3,7 @@
     "fonts.fontFamily": "'SourceCodePro-Medium', ＭＳ ゴシック, 'MS Gothic', monospace",
     "custom.work.showButtonForToolbar": true,
     "custom.work.horizontalBar.noSplitButton": true,
-    "custom.work.useIconsOfCustomWork": true,
+    "custom.work.useIconsOfCustomWork": false,
     "custom.work.grayScaleIcons": true,
     "custom.work.hover.sidebar": true,
     "custom.work.scrollwheel": true,
@@ -482,6 +482,80 @@
             "scope": "javascript",
             "text": "$(document).on('contextmenu', function(e) {\n  return false;\n});",
             "mTime": 1500813084842
+        },
+        {
+            "scope": "javascript",
+            "trigger": "$checkAll",
+            "text": "$('#check-all').on('change', function() {\n  $('input[name=\"${1}\"]').prop('checked', this.checked);\n});",
+            "mTime": 1504608543615
+        },
+        {
+            "trigger": "$checkedSubmit",
+            "scope": "javascript",
+            "text": "$('#submit').prop('disabled', true);\n$('#check').on('change', function() {\n  if ( $(this).prop('checked') == false ) {\n    $('#submit').prop('disabled', true);\n  } else {\n    $('#submit').prop('disabled', false);\n  }\n});",
+            "mTime": 1504608724446
+        },
+        {
+            "trigger": "$numOnly",
+            "description": "",
+            "scope": "javascript",
+            "text": "$('input${1}').on('keypress', function(e) {\n  if ( (e.which!=8) && (e.which!=0) && (e.which<48 || e.which>57) ) {\n    return false;\n  }\n});",
+            "mTime": 1504608873799
+        },
+        {
+            "trigger": "$changeHalf",
+            "scope": "javascript",
+            "text": "$('input${1}').blur(function() {\n  var txt = $(this).val();\n  txt = txt.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {\n    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);\n  });\n  $(this).val(txt);\n});",
+            "mTime": 1504609150694
+        },
+        {
+            "trigger": "$changeEm",
+            "scope": "javascript",
+            "text": "$('input${1}').blur(function() {\n  var txt = $(this).val();\n  txt = txt.replace(/[A-Za-z0-9]/g, function(s) {\n    return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);\n  });\n  $(this).val(txt);\n});",
+            "mTime": 1504609242651
+        },
+        {
+            "trigger": "$showCount",
+            "scope": "javascript",
+            "text": "$('textarea').after('<p>現在の文字数：<span class=\"count\">0</span></p>');\n$('textarea').on('keydown keyup change', function() {\n  var txtLength = $(this).val().length;\n  $('.count').text(txtLength);\n});",
+            "mTime": 1504609397796
+        },
+        {
+            "text": "$('img').each(function() {\n  var imgW = $(this).width(),\n      imgH = $(this).height(),\n      imgAspectRatio = imgWidth / imgHeight;\n  if ( imgAspectRatio >= 1 ) {\n    // 横長画像の場合の処理\n    ${1}\n  } else {\n    // 縦長画像の場合の処理\n  }\n});",
+            "trigger": "$imgAspectRatio",
+            "scope": "javascript",
+            "mTime": 1504837915419
+        },
+        {
+            "trigger": "$hoverWithout",
+            "scope": "javascript",
+            "text": "var element = $('ul li');\nelement.hover(function() {\n  element.not(this).stop().fadeTo(400, .2);\n}, function() {\n  element.not(this).stop().fadeTo(400, 1);\n});",
+            "mTime": 1504838232253
+        },
+        {
+            "trigger": "$limitChecked",
+            "scope": "javascript",
+            "text": "$('.limit-checked').find('input[type=\"checkbox\"]').on('change', function() {\n  var checkLimit = $(this).parent().attr('data-limit'),\n      checkedNum = $(this).parent().find('input[type=\"checkbox\"]:checked').length,\n      $unchecked = $('input[type=\"checkbox\"]:not(:checked)');\n  if ( checkedNum >= checkLimit ) {\n    $unchecked.prop('disabled', true);\n  } else {\n    $unchecked.prop('disabled', false);\n  }\n});",
+            "mTime": 1504839251932
+        },
+        {
+            "trigger": "changePseudo",
+            "scope": "javascript",
+            "text": "$('${1}').on('click', function() {\n  $('').addClass('is-active');\n});",
+            "mTime": 1505093881481
+        },
+        {
+            "text": "$('p').children().addBack().contents().each(function() {\n  if ( this.nodeType == 3 ) {\n    $(this).replaceWith($(this).text().replace(/(\\S)/g, '<span class=\"split-text\">$1</span>'));\n  }\n});\n$('p').each(function() {\n  $(this).find('.split-text').each(function(i) {\n    i = i+1;\n    $(this).addClass('split-text' + i);\n  });\n});",
+            "trigger": "$splitText",
+            "scope": "javascript",
+            "mTime": 1505275048322,
+            "description": ""
+        },
+        {
+            "trigger": "$showSplitText",
+            "scope": "javascript",
+            "text": "$('p').children().addBack().contents().each(function() {\n  if ( this.nodeType == 3 ) {\n    $(this).replaceWith($(this).text().replace(/(\\S)/g, '<span class=\"split-text\">$1</span>'));\n  }\n});\n$('.split-text').css('opacity', 0);\n$('.split-text').each(function(i) {\n  $(this).delay(i*50).animate({'opacity': 1}, 500);\n});",
+            "mTime": 1505274958655
         },
         {
             "scope": "html",
@@ -1106,5 +1180,7 @@
             "explicitPlatform": "all",
             "key": "Shift-Cmd-V"
         }
-    }
+    },
+    "brackets-eslint.gutterMarks": true,
+    "brackets-eslint.useLocalESLint": false
 }
